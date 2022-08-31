@@ -53,6 +53,7 @@ class Menu():
                 else:
                     connect.remove_product(product.id)
                     print("Produto removido com sucesso!")
+    
     def list_menu(self):
         products = connect.get_products()
         if len(products) == 0:
@@ -65,6 +66,9 @@ class Menu():
             for i in range(counter*5, counter*5+5):
                 try:
                     print(products[i])
+                    # tenta acessar o próximo item, evitando que o programa pergunte se o usuário quer continuar
+                    # caso não haja mais produtos após o termino da página
+                    gambiarra = products[i+1]
                 except IndexError:
                     return
             continuar = input("Deseja mostrar a próxima página? [S/N]: ").strip().upper() == 'S'
