@@ -7,7 +7,7 @@ class Controller:
 
     def get_product_by_name(self, name: str) -> Produto:
         for product in self.products:
-            if product.name == name:
+            if product.name == name.lower():
                 return product
         return 'Produto não encontrado'
 

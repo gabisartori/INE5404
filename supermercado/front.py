@@ -25,7 +25,7 @@ class Menu():
             if option == '0':
                 break
             elif option == '1':
-                nome = input("Digite o nome do produto: ")
+                nome = input("Digite o nome do produto: ").lower()
                 preco = int(input("Digite o preço do produto em centavos: "))
                 unidade = input("Esse produto é vendido em unidades? [S/N]: ").strip().upper() == 'S'
                 connect.add_product(Produto(nome, preco, unidade, 0))
