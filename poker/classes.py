@@ -36,20 +36,3 @@ class Jogador:
     
     def receber_carta(self, carta):
         self.cartas.append(carta)
-
-class Jogo:
-    def __init__(self, jogadores) -> None:
-        self.jogadores = jogadores
-        self.deck = Deck()
-        self.deck.embaralhar()
-
-    def distribuir_cartas(self):
-        for _ in range(2):
-            for jogador in self.jogadores: jogador.receber_carta(self.deck.pop())
-
-    def __str__(self) -> str:
-        resultado = ''
-        for jogador in self.jogadores:
-            resultado += f'{jogador.nome}: {jogador.cartas}'
-        return resultado
-    
