@@ -17,4 +17,3 @@ for _ in range(2):
         jogador.receber_carta(deck.pop())
 
 # First round
-    
