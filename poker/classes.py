@@ -33,27 +33,25 @@ class Jogador:
     def __init__(self, nome) -> None:
         self.nome = nome
         self.cartas = []
-        self.apostando = 0
         self.banco = 1000
     
     def receber_carta(self, carta):
         self.cartas.append(carta)
 
     def cobrir(self, valor):
-        if self.banco + self.apostando >= valor:
-            self.banco -= valor - self.apostando
-            self.apostando = valor
+        if self.banco >= valor:
+            self.banco -= valor
         else:
             # All-in
-            self.apostando += self.banco
             self.banco = 0
+        return True
     
     def cobrar(self, valor, mesa):
         choice = False
-        if choice:
-            self.cobrir(valor)
+        if choice: return self.cobrir(valor)
         else:
             mesa.jogadores_ativos.remove(self)
+            return False
 
     def receber(self, valor):
         self.banco += valor
@@ -78,6 +76,5 @@ class Mesa:
             print(jogador.nome, jogador.cartas)
         self.jogadores_ativos = self.jogadores
         
-        for jogador in self.jogadores:
-            jogador.cobrar(100, self)
-            self.montante += 100
+        for jogador in self.jogadores_ativos:
+            if jogador.cobrar(100, self): self.montante += 100
