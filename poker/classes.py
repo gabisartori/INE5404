@@ -36,3 +36,11 @@ class Jogador:
     
     def receber_carta(self, carta):
         self.cartas.append(carta)
+
+class Mesa:
+    def __init__(self) -> None:
+        self.cartas = []
+        self.montante = []
+    
+    def receber_carta(self, carta):
+        self.cartas.append(carta)
