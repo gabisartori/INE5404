@@ -1,4 +1,6 @@
-from classes import *
+from jogador import Jogador
+from mesa import Mesa
+from cartas import Carta, Deck
 
 # Create a new game
 
