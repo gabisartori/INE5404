@@ -22,6 +22,7 @@ class Mesa:
         print([jogador.nome for jogador in self.jogadores_ativos])
         # Rodada
         while True:
+            # Percorrendo os jogadores em ordem reversa para que, ao remover um jogador, o próximo não seja pulado
             for i in range(len(self.jogadores_ativos)-1, -1, -1):
                 jogador = self.jogadores_ativos[i]
                 print("="*20)
@@ -33,7 +34,8 @@ class Mesa:
                 # Caso o jogador aumente a aposta
                 if jogador.valor_aposta > self.valor_a_cobrar:
                     self.valor_a_cobrar = jogador.valor_aposta
-                
+                if all([jogador.valor_aposta == self.valor_a_cobrar for jogador in self.jogadores_ativos]): break
+
             if all([jogador.valor_aposta == self.valor_a_cobrar for jogador in self.jogadores_ativos]):
                 for jogador in self.jogadores: self.montante += jogador.valor_aposta
                 print(self.montante)
