@@ -8,14 +8,48 @@ from cartas import Carta, Deck
 deck = Deck()
 deck.embaralhar()
 
-# Create playerS
+# Create players
 jogadores = []
 for nome in ['João', 'Maria', 'Pedro', 'Ana']:
     jogadores.append(Jogador(nome))
 
-# Deal cards
+# Create a new table
+mesa = Mesa(jogadores)
+
+# jogadores recebem duas cartas
 for _ in range(2):
     for jogador in jogadores:
         jogador.receber_carta(deck.pop())
 
-# First round
+
+# rodada de apostas
+
+# três cartas são colocadas na mesa
+for _ in range(3):
+    mesa.receber_carta(deck.pop())
+
+# rodada de apostas
+
+# uma carta é colocada na mesa
+mesa.receber_carta(deck.pop())
+
+# rodada de apostas
+
+# uma carta é colocada na mesa
+mesa.receber_carta(deck.pop())
+
+# rodada de apostas
+
+# jogadores mostram suas cartas
+
+# jogador com a melhor mão ganha
+
+# tudo é resetado
+
+
+## rodada de apostas
+# dealer paga a taxa inicial
+
+# próximo jogador escolhe entre correr, cobrir ou aumentar
+
+# se todos os jogadores cobrirem, a rodada termina
