@@ -16,18 +16,13 @@ for nome in ['João', 'Maria', 'Pedro', 'Ana']:
 # Create a new table
 mesa = Mesa(jogadores)
 
-# jogadores recebem duas cartas
-for _ in range(2):
-    for jogador in jogadores:
-        jogador.receber_carta(deck.pop())
-
 
 # rodada de apostas
 
 # três cartas são colocadas na mesa
 for _ in range(3):
     mesa.receber_carta(deck.pop())
-
+print(mesa)
 # rodada de apostas
 
 # uma carta é colocada na mesa

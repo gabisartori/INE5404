@@ -28,6 +28,7 @@ class Jogador:
         # Recusar
         if choice == 3:
             mesa.jogadores_ativos.remove(self)
+            print([jo.nome for jo in mesa.jogadores_ativos])
             return self.valor_aposta
 
     def cobrir(self, valor):
@@ -39,14 +40,6 @@ class Jogador:
             temp = self.banco
             self.banco = 0
             return temp
-
-    
-    def cobrar(self, valor, mesa):
-        choice = False
-        if choice: return self.cobrir(valor)
-        else:
-            mesa.jogadores_ativos.remove(self)
-            return False
 
     def receber(self, valor):
         self.banco += valor
