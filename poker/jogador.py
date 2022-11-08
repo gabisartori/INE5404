@@ -28,7 +28,7 @@ class Jogador:
         # Recusar
         if choice == 3:
             mesa.jogadores_ativos.remove(self)
-            return 0
+            return self.valor_aposta
 
     def cobrir(self, valor):
         if self.banco >= valor:

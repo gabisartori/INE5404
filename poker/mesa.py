@@ -10,14 +10,30 @@ class Mesa:
         self.cartas.append(carta)
     
     def rodada_aposta(self):
+        # Jogadores começam sem apostar nada
+        self.jogadores_ativos = self.jogadores.copy()
+        for jogador in self.jogadores: jogador.valor_aposta = 0
+        
+        # Rodada
         while True:
             for jogador in self.jogadores_ativos:
+                print(jogador.nome, jogador.valor_aposta)
                 jogador.valor_aposta = jogador.aposta(self.valor_a_cobrar, self)
-                self.montante += jogador.valor_aposta
+                print(jogador.nome, jogador.valor_aposta)
+
+                # Caso o jogador aumente a aposta
+                if jogador.valor_aposta > self.valor_a_cobrar:
+                    self.valor_a_cobrar = jogador.valor_aposta
+                
             
-            # break loop when all players have accepted the bet
+                # break loop when all players have accepted the bet
+                if all([jogador.valor_aposta == self.valor_a_cobrar for jogador in self.jogadores_ativos]):
+                    break
             if all([jogador.valor_aposta == self.valor_a_cobrar for jogador in self.jogadores_ativos]):
+                for jogador in self.jogadores: self.montante += jogador.valor_aposta
+                print(self.montante)
                 break
+
 
     def jogo(self, deck):
         self.montante = 0
@@ -28,7 +44,3 @@ class Mesa:
         for carta in self.cartas: print(carta)
         for jogador in self.jogadores:
             print(jogador.nome, jogador.cartas)
-        self.jogadores_ativos = self.jogadores
-        
-        for jogador in self.jogadores_ativos:
-            if jogador.cobrar(100, self): self.montante += 100
