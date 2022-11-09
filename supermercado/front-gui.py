@@ -30,7 +30,7 @@ class menu:
         unitario = tk.BooleanVar()
         tk.Checkbutton(self.root, variable=unitario, onvalue=True, offvalue=False).pack()
 
-        tk.Button(self.root, text="Cadastrar produto", command=lambda: self.connect.add_product(Produto(nome.get(), preco.get(), unitario, 1))).pack()
+        tk.Button(self.root, text="Cadastrar produto", command=lambda: self.connect.add_product(Produto(nome.get(), float(preco.get()), unitario))).pack()
 
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
@@ -40,7 +40,7 @@ class menu:
         
         products = self.connect.get_products()
         for product in products:
-            tk.Label(self.root, text=f'{product.name} R${float(product.price):.2f}').pack()
+            tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack()
 
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
@@ -53,6 +53,29 @@ class menu:
     def remover(self):
         self.clear(self.root)
         tk.Label(self.root, text="Remover").pack()
+
+        tk.Label(self.root, text="Id ou nome do produto").pack()
+        entry = tk.Entry(self.root)
+        entry.pack()
+        
+        def test():
+            code = entry.get()
+            if code.isdigit():
+                product = self.connect.get_product_by_id(int(code))
+            else:
+                product = self.connect.get_product_by_name(code)
+        
+            if type(product) == str:
+                aviso = tk.Label(self.root, text=product)
+                aviso.pack()
+                aviso.after(3000, aviso.destroy)
+            else:
+                self.connect.remove_product(product.id)
+                aviso = tk.Label(self.root, text="Produto removido com sucesso!")
+                aviso.pack()
+
+        tk.Button(self.root, text="Remover", command=test).pack()
+
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
     def inicio(self):
