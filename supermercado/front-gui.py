@@ -37,6 +37,10 @@ class menu:
     def listar(self):
         self.clear(self.root)
         tk.Label(self.root, text="Listar").pack()
+        
+        products = self.connect.get_products()
+        for product in products:
+            tk.Label(self.root, text=f'{product.name} R${float(product.price):.2f}').pack()
 
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
