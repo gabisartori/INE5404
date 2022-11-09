@@ -1,5 +1,6 @@
 import tkinter as tk
 from controller import Controller
+from produto import Produto
 
 class menu:
     def __init__(self) -> None:
@@ -16,8 +17,23 @@ class menu:
     def cadastrar(self):
         self.clear(self.root)
         tk.Label(self.root, text="Cadastrar").pack()
+
+        tk.Label(self.root, text="Nome do produto").pack()
+        nome = tk.Entry(self.root)
+        nome.pack()
+
+        tk.Label(self.root, text="Preço do produto").pack()
+        preco = tk.Entry(self.root)
+        preco.pack()
+
+        tk.Label(self.root, text="Unidade").pack()
+        unitario = tk.BooleanVar()
+        tk.Checkbutton(self.root, variable=unitario, onvalue=True, offvalue=False).pack()
+
+        tk.Button(self.root, text="Cadastrar produto", command=lambda: self.connect.add_product(Produto(nome.get(), preco.get(), unitario, 1))).pack()
+
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
-        
+
     def listar(self):
         self.clear(self.root)
         tk.Label(self.root, text="Listar").pack()
