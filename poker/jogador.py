@@ -1,14 +1,35 @@
+from cartas import Mao, Carta
+
 class Jogador:
     def __init__(self, nome) -> None:
         self.nome = nome
         self.cartas = []
         self.banco = 1000
         self.valor_aposta = 0
+        self.mao = None
     
-    def receber_carta(self, carta):
+    def receber_carta(self, carta: Carta) -> None:
         self.cartas.append(carta)
 
-    def aposta(self, valor, mesa):
+    def montar_mao(self, cartas_mesa: list[Carta]) -> None:
+        cartas = ''
+        while len(cartas) != 5:
+            cartas = input('Quais cartas você vai escolher? ')
+            print(cartas)
+        mao = []
+        for carta in cartas:
+            if carta.isnumeric():
+                mao.append(cartas_mesa[int(carta)-1])
+                continue
+            if carta == 'a':
+                mao.append(self.cartas[0])
+                continue
+            if carta == 'b':
+                mao.append(self.cartas[1])
+                continue
+        if len(mao) == 5: self.mao =  Mao(mao)
+        else: raise Exception('Mão inválida')
+    def aposta(self, valor, mesa) -> int:
 
         # Recusar
         print('''[1] Cobrir
@@ -31,7 +52,7 @@ class Jogador:
             print([jo.nome for jo in mesa.jogadores_ativos])
             return self.valor_aposta
 
-    def cobrir(self, valor):
+    def cobrir(self, valor) -> int:
         if self.banco >= valor:
             self.banco -= valor
             return valor
@@ -41,6 +62,6 @@ class Jogador:
             self.banco = 0
             return temp
 
-    def receber(self, valor):
+    def receber(self, valor) -> None:
         self.banco += valor
     

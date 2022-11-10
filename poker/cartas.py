@@ -31,17 +31,18 @@ class Deck:
 class Mao:
     def __init__(self, cartas: list[Carta]) -> None:
         self.cartas = sorted(cartas, key=lambda carta: carta.numero)
-        self.status = {
-            'royal_flush': False,
-            'straight_flush': False,
-            'quadra': False,
-            'full_house': False,
-            'flush': False,
-            'straight': False,
-            'trinca': False,
-            'dois_pares': False,
-            'par': False,
-        }
+        self.status = [
+            self.is_royal_flush(),
+            self.is_straight_flush(),
+            self.is_quadra(),
+            self.is_full_house(),
+            self.is_flush(),
+            self.is_straight(),
+            self.is_trinca(),
+            self.is_dois_pares(),
+            self.is_par(),
+            self.cartas[-1].numero
+        ]
 
     def is_royal_flush(self):
         return all([carta.naipe == self.cartas[0].naipe for carta in self.cartas]) and [carta.numero for carta in self.cartas] == [1, 10, 11, 12, 13]
@@ -84,6 +85,4 @@ class Mao:
     def __str__(self) -> str:
         coisa = ''
         for carta in self.cartas:
-            coisa += str(carta)
-    
-
+            coisa += str(carta) + '\n'
