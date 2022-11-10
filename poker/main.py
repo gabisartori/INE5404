@@ -14,5 +14,4 @@ for nome in ['João', 'Maria', 'Pedro', 'Ana']: jogadores.append(Jogador(nome))
 
 # Create a new table
 mesa = Mesa(jogadores)
-print([jo.nome for jo in mesa.jogadores])
 mesa.jogo(deck)

@@ -18,7 +18,6 @@ class Mesa:
     def rodada_aposta(self):
         # Jogadores começam sem apostar nada
         for jogador in self.jogadores: jogador.valor_aposta = 0
-        self.jogadores_ativos = self.jogadores.copy()
         print([jogador.nome for jogador in self.jogadores_ativos])
         # Rodada
         while True:
@@ -78,4 +77,11 @@ class Mesa:
         self.rodada_aposta()
 
         # Showdown
-        # todo
+
+        # Jogadores montam suas mãos
+        for jogador in self.jogadores_ativos:
+            jogador.montar_mao(self.cartas)
+        
+        # Jogadores são ordenados de acordo com a força de suas mãos
+        self.jogadores_ativos.sort(key=lambda jogador: jogador.mao.forca, reverse=True)
+        print([jogador.nome for jogador in self.jogadores_ativos])

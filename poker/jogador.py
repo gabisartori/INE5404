@@ -14,8 +14,8 @@ class Jogador:
     def montar_mao(self, cartas_mesa: list[Carta]) -> None:
         cartas = ''
         while len(cartas) != 5:
+            print(self.nome)
             cartas = input('Quais cartas você vai escolher? ')
-            print(cartas)
         mao = []
         for carta in cartas:
             if carta.isnumeric():
@@ -49,7 +49,6 @@ class Jogador:
         # Recusar
         if choice == 3:
             mesa.jogadores_ativos.remove(self)
-            print([jo.nome for jo in mesa.jogadores_ativos])
             return self.valor_aposta
 
     def cobrir(self, valor) -> int:

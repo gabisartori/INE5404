@@ -41,8 +41,10 @@ class Mao:
             self.is_trinca(),
             self.is_dois_pares(),
             self.is_par(),
-            self.cartas[-1].numero
+            True
         ]
+        self.forca = self.status.index(True)
+
 
     def is_royal_flush(self):
         return all([carta.naipe == self.cartas[0].naipe for carta in self.cartas]) and [carta.numero for carta in self.cartas] == [1, 10, 11, 12, 13]
