@@ -29,6 +29,7 @@ class Jogador:
                 continue
         if len(mao) == 5: self.mao =  Mao(mao)
         else: raise Exception('Mão inválida')
+    
     def aposta(self, valor, mesa) -> int:
 
         # Recusar
