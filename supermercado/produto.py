@@ -1,6 +1,6 @@
 class Produto:
     def __init__(self, name: str, price: int, unitary: bool, id:int=0) -> None:
-        self.name = name
+        self.name = name.lower()
         self.price = price
         self.unitary = unitary
         self.id = id
