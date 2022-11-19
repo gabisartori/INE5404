@@ -40,7 +40,10 @@ class menu:
         
         products = self.connect.get_products()
         for product in products:
-            tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack()
+            item = tk.Frame(self.root, height=2, bg="black")
+            item.pack()
+            tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack(in_=item, side=tk.LEFT)
+            tk.Button(self.root, text="Remover", command=lambda: self.connect.remove_product(product.id)).pack(in_=item, side=tk.RIGHT)
 
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
