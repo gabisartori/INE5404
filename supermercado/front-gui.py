@@ -48,13 +48,6 @@ class menu:
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
 
     def buscar(self):
-        self.clear(self.root)
-        tk.Label(self.root, text="Buscar").pack()
-        tk.Label(self.root, text="Id ou nome do produto").pack()
-        entry = tk.Entry(self.root)
-        entry.pack()
-
-
         def acao():
             if entry.get().isnumeric():
                 product = self.connect.get_product_by_id(int(entry.get()))
@@ -71,6 +64,11 @@ class menu:
                 tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack(in_=item, side=tk.LEFT)
                 tk.Button(self.root, text="Remover", command=lambda: self.connect.remove_product(product.id)).pack(in_=item, side=tk.RIGHT)
 
+        self.clear(self.root)
+        tk.Label(self.root, text="Buscar").pack()
+        tk.Label(self.root, text="Id ou nome do produto").pack()
+        entry = tk.Entry(self.root)
+        entry.pack()
         botoes = tk.Frame(self.root)
         botoes.pack()
 
