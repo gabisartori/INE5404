@@ -50,8 +50,32 @@ class menu:
     def buscar(self):
         self.clear(self.root)
         tk.Label(self.root, text="Buscar").pack()
+        tk.Label(self.root, text="Id ou nome do produto").pack()
+        entry = tk.Entry(self.root)
+        entry.pack()
 
-        tk.Button(self.root, text="Voltar", command=self.inicio).pack()
+
+        def acao():
+            if entry.get().isnumeric():
+                product = self.connect.get_product_by_id(int(entry.get()))
+            else:
+                product = self.connect.get_product_by_name(entry.get())
+            
+            if type(product) == str:
+                aviso = tk.Label(self.root, text=product, fg="red")
+                aviso.pack()
+                aviso.after(3000, aviso.destroy)
+            else:
+                item = tk.Frame(self.root, height=2, bg="black")
+                item.pack()
+                tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack(in_=item, side=tk.LEFT)
+                tk.Button(self.root, text="Remover", command=lambda: self.connect.remove_product(product.id)).pack(in_=item, side=tk.RIGHT)
+
+        botoes = tk.Frame(self.root)
+        botoes.pack()
+
+        tk.Button(self.root, text="Buscar", command=acao).pack(in_=botoes, side=tk.LEFT)
+        tk.Button(self.root, text="Voltar", command=self.inicio).pack(in_=botoes, side=tk.RIGHT)
 
     def remover(self):
         self.clear(self.root)
