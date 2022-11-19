@@ -43,9 +43,36 @@ class menu:
             item = tk.Frame(self.root, height=2, bg="black")
             item.pack()
             tk.Label(self.root, text=f'{product.name} R${product.price:.2f}').pack(in_=item, side=tk.LEFT)
+            tk.Button(self.root, text="Editar", command=lambda: self.editar(product.id)).pack(in_=item, side=tk.RIGHT)
             tk.Button(self.root, text="Remover", command=lambda: self.connect.remove_product(product.id)).pack(in_=item, side=tk.RIGHT)
 
         tk.Button(self.root, text="Voltar", command=self.inicio).pack()
+
+    def editar(self, id):
+        self.clear(self.root)
+        original_product = self.connect.get_product_by_id(id)
+        tk.Label(self.root, text="Editar").pack()
+
+        tk.Label(self.root, text="Nome do produto").pack()
+        nome = tk.Entry(self.root)
+        nome.insert(tk.END, original_product.name)
+        nome.pack()
+
+        tk.Label(self.root, text="Preço do produto").pack()
+        preco = tk.Entry(self.root)
+        preco.insert(tk.END, original_product.price)
+        preco.pack()
+
+        tk.Label(self.root, text="Unidade").pack()
+        unitario = tk.BooleanVar()
+        coisa = tk.Checkbutton(self.root, variable=unitario, onvalue=True, offvalue=False)
+        coisa.pack()
+        if original_product.unitary:
+            coisa.select()
+
+        tk.Button(self.root, text="Cadastrar produto", command=lambda: self.connect.edit_product(Produto(nome.get(), float(preco.get()), unitario), id)).pack()
+
+        tk.Button(self.root, text="Voltar", command=self.listar).pack()
 
     def buscar(self):
         def acao():

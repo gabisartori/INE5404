@@ -37,3 +37,10 @@ Produto não encontrado
 Produto não encontrado
 ====================
 '''
+    def edit_product(self, product: Produto, id: int) -> None:
+        for original_product in self.products:
+            if original_product.id == id:
+                original_product.name = product.name
+                original_product.price = product.price
+                original_product.unitary = product.unitary
+                return
