@@ -18,6 +18,9 @@ class Mesa:
         self.cartas.append(carta)
     
     def rodada_aposta(self):
+        # resetar valor a cobrar
+        self.valor_a_cobrar = 0 # Jogadores podem apenas bater na mesa
+        
         # Jogadores começam sem apostar nada
         for jogador in self.jogadores: jogador.valor_aposta = 0
         print([jogador.nome for jogador in self.jogadores_ativos])
