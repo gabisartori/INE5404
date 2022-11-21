@@ -18,8 +18,6 @@ class Mesa:
         self.cartas.append(carta)
     
     def rodada_aposta(self):
-        # resetar valor a cobrar
-        self.valor_a_cobrar = 0 # Jogadores podem apenas bater na mesa
 
         # Jogadores começam sem apostar nada
         for jogador in self.jogadores: jogador.valor_aposta = 0
@@ -44,7 +42,6 @@ class Mesa:
                 for jogador in self.jogadores: self.montante += jogador.valor_aposta
                 print(self.montante)
                 break
-
 
     def jogo(self):
         # Inicializando o jogo
@@ -99,4 +96,4 @@ class Mesa:
         print([jogador.nome for jogador in self.jogadores_ativos])
 
         # Jogador com maior força recebe o montante
-        self.jogares_ativos[0].receber_montante(self.montante)    
+        self.jogadores_ativos[0].receber_montante(self.montante)    
