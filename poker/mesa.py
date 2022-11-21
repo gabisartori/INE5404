@@ -20,7 +20,7 @@ class Mesa:
     def rodada_aposta(self):
         # resetar valor a cobrar
         self.valor_a_cobrar = 0 # Jogadores podem apenas bater na mesa
-        
+
         # Jogadores começam sem apostar nada
         for jogador in self.jogadores: jogador.valor_aposta = 0
         print([jogador.nome for jogador in self.jogadores_ativos])
@@ -96,3 +96,6 @@ class Mesa:
         # Jogadores são ordenados de acordo com a força de suas mãos
         self.jogadores_ativos.sort(key=lambda jogador: jogador.mao.forca, reverse=True)
         print([jogador.nome for jogador in self.jogadores_ativos])
+
+        # Jogador com maior força recebe o montante
+        self.jogares_ativos[0].receber_montante(self.montante)    
