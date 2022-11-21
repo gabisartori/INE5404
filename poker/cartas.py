@@ -43,41 +43,7 @@ class Mao:
             self.is_par(),
             True
         ]
-        self.forca = 9 - self.status.index(True)
-        if self.forca == 9:
-            self.forca *= 100_000_000_000
-        elif self.forca == 8:
-            self.forca *= 10_000_000_000
-            self.forca += max([carta.numero for carta in self.cartas]) * 1_000_000_000
-        elif self.forca == 7:
-            self.forca *= 1_000_000_000
-            self.forca += self.cartas[2].numero * 100_000_000
-        elif self.forca == 6:
-            self.forca *= 100_000_000
-            self.forca += self.cartas[2].numero * 10_000_000
-            self.forca += self.cartas[3].numero * 1_000_000
-        elif self.forca == 5:
-            self.forca *= 1_000_000
-            self.forca += max([carta.numero for carta in self.cartas]) * 100_000
-        elif self.forca == 4:
-            self.forca *= 100_000
-            self.forca += max([carta.numero for carta in self.cartas]) * 10_000
-        elif self.forca == 3:
-            self.forca *= 1_000
-            trio = [carta.numero for carta in self.cartas if self.cartas.count(carta) == 3][0]
-            self.forca +=  trio*1000 + max([carta.numero for carta in self.cartas if carta.numero != trio]) * 100+ min([carta.numero for carta in self.cartas if carta.numero != trio])*10
-        elif self.forca == 2:
-            self.forca *= 1_000
-            dupla = [carta.numero for carta in self.cartas if self.cartas.count(carta) == 2][0]
-            outra_dupla = [carta.numero for carta in self.cartas if self.cartas.count(carta) == 2 and carta.numero != dupla][0]
-            self.forca += dupla * 100 + outra_dupla*10 + [carta.numero for carta in self.cartas if carta.numero != dupla and carta.numero != outra_dupla][0]
-        elif self.forca == 1:
-            self.forca *= 100
-            dupla = [carta.numero for carta in self.cartas if self.cartas.count(carta) == 2][0]
-            self.forca += max([carta.numero for carta in self.cartas if carta.numero != dupla]) * 10
-        else:
-            self.forca *= 10
-            self.forca += max([carta.numero for carta in self.cartas])
+        self.forca = self.status.index(True)
 
 
     def is_royal_flush(self):
