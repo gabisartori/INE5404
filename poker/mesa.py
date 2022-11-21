@@ -57,6 +57,7 @@ class Mesa:
         for jogador in self.jogadores:
             jogador.cartas = []
             jogador.valor_aposta = 0
+            jogador.mao = None
         
         # jogadores recebem duas cartas
         for _ in range(2):
