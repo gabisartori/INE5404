@@ -1,3 +1,5 @@
+from cartas import Deck
+
 class Mesa:
     def __init__(self, jogadores) -> None:
         self.cartas = []
@@ -41,12 +43,18 @@ class Mesa:
                 break
 
 
-    def jogo(self, deck):
-        self.montante = 0
-
+    def jogo(self):
+        # Inicializando o jogo
+        deck = Deck()
+        deck.embaralhar()
         self.jogadores_ativos = self.jogadores.copy()
+        self.montante = 0
         self.valor_a_cobrar = 100
-
+        self.cartas = []
+        for jogador in self.jogadores:
+            jogador.cartas = []
+            jogador.valor_aposta = 0
+        
         # jogadores recebem duas cartas
         for _ in range(2):
             for jogador in self.jogadores_ativos:
