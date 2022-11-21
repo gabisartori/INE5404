@@ -43,7 +43,10 @@ class Jogador:
         
         # Aumentar
         if choice == 2:
-            aumento = 100
+            aumento = ''
+            while not aumento.isnumeric():
+                aumento = (input('Quanto você quer aumentar? '))
+            aumento = int(aumento)
             self.cobrir(valor + aumento)
             return valor + aumento
 
